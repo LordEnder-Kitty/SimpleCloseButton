@@ -1,0 +1,33 @@
+{
+	"schemaVersion": 1,
+	"id": "close-btn",
+	"version": "${version}",
+	"name": "Simple Close Button",
+	"description": "Adds a close button to most inventory screens.",
+	"authors": ["LordEnder_Kitty"],
+	"contact": {
+		"modrinth": "https://modrinth.com/mod/simple-close-button",
+		"curseforge": "https://www.curseforge.com/minecraft/mc-mods/simple-close-button",
+		"sources": "https://github.com/LordEnder-Kitty/SimpleCloseButton"
+	},
+	"license": "MIT",
+	"icon": "assets/close-btn/icon.png",
+	"environment": "client",
+	"entrypoints": {
+		"main": ["net.enderkitty.SimpleCloseButton"],
+		"modmenu": ["net.enderkitty.ModMenuImpl"]
+	},
+	"mixins": ["close-btn.mixins.json"],
+	"depends": {
+		"fabricloader": ">=0.14.22",
+		"minecraft": ">=1.20.2",
+		"java": ">=17",
+		"fabric-api": "*",
+		"yet_another_config_lib_v3": "*"
+	},
+	"custom": {
+		"modmenu": {
+			"update_checker": true
+		}
+	}
+}
