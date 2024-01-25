@@ -14,3 +14,4 @@ public class SimpleCloseButton implements ModInitializer {
 		SimpleCloseButtonConfig.INSTANCE.load();
 	}
 }
+//balls
