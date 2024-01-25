@@ -8,7 +8,6 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.AbstractParentElement;
 import net.minecraft.client.gui.Drawable;
 import net.minecraft.client.gui.Element;
-import net.minecraft.client.gui.screen.ButtonTextures;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ingame.*;
 import net.minecraft.client.gui.tooltip.Tooltip;
@@ -28,9 +27,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Environment(value= EnvType.CLIENT)
 @Mixin(Screen.class)
 public abstract class ScreenMixin extends AbstractParentElement implements Drawable {
-    @Unique
-    private static final ButtonTextures TEXTURES = new ButtonTextures(
-            new Identifier(SimpleCloseButton.MOD_ID, "widget/close_button"), new Identifier(SimpleCloseButton.MOD_ID, "widget/close_button_highlighted"));
+    @Unique private static final Identifier TEXTURE = new Identifier(SimpleCloseButton.MOD_ID, "textures/gui/close_button.png");
 
     @Shadow public abstract void close();
     @Shadow protected abstract <T extends Element & Drawable> T addDrawableChild(T drawableElement);
@@ -40,7 +37,8 @@ public abstract class ScreenMixin extends AbstractParentElement implements Drawa
 
     @Unique SimpleCloseButtonConfig config = SimpleCloseButtonConfig.INSTANCE.getConfig();
 
-    @Unique ButtonWidget closeButton = new TexturedButtonWidget(this.width / 2 + 73, this.height / 2 + 80, 12, 12, TEXTURES, button -> {this.close();});
+    @Unique ButtonWidget closeButton = new TexturedButtonWidget(
+            this.width / 2 + 73, this.height / 2 + 80, 12, 12, 0, 0, 13, TEXTURE, button -> this.close());
 
 
 
