@@ -3,121 +3,134 @@ package net.enderkitty.config;
 import dev.isxander.yacl3.api.*;
 import dev.isxander.yacl3.api.controller.IntegerSliderControllerBuilder;
 import dev.isxander.yacl3.api.controller.TickBoxControllerBuilder;
-import dev.isxander.yacl3.config.ConfigEntry;
-import dev.isxander.yacl3.config.ConfigInstance;
-import dev.isxander.yacl3.config.GsonConfigInstance;
+import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
+import dev.isxander.yacl3.config.v2.api.SerialEntry;
+import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
+import net.enderkitty.SimpleCloseButton;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 
 public class SimpleCloseButtonConfig {
-    public static final ConfigInstance<SimpleCloseButtonConfig> INSTANCE = GsonConfigInstance.createBuilder(SimpleCloseButtonConfig.class)
-            .setPath(FabricLoader.getInstance().getConfigDir().resolve("simple_close_button.json")).build();
+    public static final ConfigClassHandler<SimpleCloseButtonConfig> HANDLER = ConfigClassHandler.createBuilder(SimpleCloseButtonConfig.class)
+            .id(Identifier.of(SimpleCloseButton.MOD_ID, "simple_close_button_config"))
+            .serializer(config -> GsonConfigSerializerBuilder.create(config)
+                    .setPath(FabricLoader.getInstance().getConfigDir().resolve("simple_close_button.json"))
+                    .setJson5(false)
+                    .build())
+            .build();
+    
+    
+    @SerialEntry public boolean modEnabled = true;
+    @SerialEntry public boolean tooltip = true;
 
-    @ConfigEntry public boolean modEnabled = true;
-    @ConfigEntry public boolean tooltip = true;
+    @SerialEntry public boolean creativeInventory = true;
+    @SerialEntry public int creativeInventoryX = 97;
+    @SerialEntry public int creativeInventoryY = 63;
 
-    @ConfigEntry public boolean creativeInventory = true;
-    @ConfigEntry public int creativeInventoryX = 97;
-    @ConfigEntry public int creativeInventoryY = 63;
+    @SerialEntry public boolean playerInventory = true;
+    @SerialEntry public int playerInventoryX = 73;
+    @SerialEntry public int playerInventoryY = 80;
+    @SerialEntry public int playerRecipeBookX = 150;
+    @SerialEntry public int playerRecipeBookY = 80;
 
-    @ConfigEntry public boolean playerInventory = true;
-    @ConfigEntry public int playerInventoryX = 73;
-    @ConfigEntry public int playerInventoryY = 80;
-    @ConfigEntry public int playerRecipeBookX = 150;
-    @ConfigEntry public int playerRecipeBookY = 80;
+    @SerialEntry public boolean chestInventory = true;
+    @SerialEntry public int chestInventoryX = 73;
+    @SerialEntry public int chestInventoryY1 = 63;
+    @SerialEntry public int chestInventoryY2 = 72;
+    @SerialEntry public int chestInventoryY3 = 81;
+    @SerialEntry public int chestInventoryY4 = 90;
+    @SerialEntry public int chestInventoryY5 = 99;
+    @SerialEntry public int chestInventoryY6 = 108;
 
-    @ConfigEntry public boolean singleChestInventory = true;
-    @ConfigEntry public int singleChestInventoryX = 73;
-    @ConfigEntry public int singleChestInventoryY = 81;
+    @SerialEntry public boolean craftingTableInventory = true;
+    @SerialEntry public int craftingTableInventoryX = 73;
+    @SerialEntry public int craftingTableInventoryY = 80;
+    @SerialEntry public int craftingTableRecipeBookX = 150;
+    @SerialEntry public int craftingTableRecipeBookY = 80;
+    
+    @SerialEntry public boolean crafterInventory = true;
+    @SerialEntry public int crafterInventoryX = 73;
+    @SerialEntry public int crafterInventoryY = 80;
 
-    @ConfigEntry public boolean doubleChestInventory = true;
-    @ConfigEntry public int doubleChestInventoryX = 73;
-    @ConfigEntry public int doubleChestInventoryY = 108;
+    @SerialEntry public boolean shulkerInventory = true;
+    @SerialEntry public int shulkerInventoryX = 73;
+    @SerialEntry public int shulkerInventoryY = 81;
 
-    @ConfigEntry public boolean craftingTableInventory = true;
-    @ConfigEntry public int craftingTableInventoryX = 73;
-    @ConfigEntry public int craftingTableInventoryY = 80;
-    @ConfigEntry public int craftingTableRecipeBookX = 150;
-    @ConfigEntry public int craftingTableRecipeBookY = 80;
+    @SerialEntry public boolean furnaceInventory = true;
+    @SerialEntry public int furnaceInventoryX = 73;
+    @SerialEntry public int furnaceInventoryY = 80;
+    @SerialEntry public int furnaceRecipeBookX = 150;
+    @SerialEntry public int furnaceRecipeBookY = 80;
 
-    @ConfigEntry public boolean shulkerInventory = true;
-    @ConfigEntry public int shulkerInventoryX = 73;
-    @ConfigEntry public int shulkerInventoryY = 81;
+    @SerialEntry public boolean smokerInventory = true;
+    @SerialEntry public int smokerInventoryX = 73;
+    @SerialEntry public int smokerInventoryY = 80;
+    @SerialEntry public int smokerRecipeBookX = 150;
+    @SerialEntry public int smokerRecipeBookY = 80;
 
-    @ConfigEntry public boolean furnaceInventory = true;
-    @ConfigEntry public int furnaceInventoryX = 73;
-    @ConfigEntry public int furnaceInventoryY = 80;
-    @ConfigEntry public int furnaceRecipeBookX = 150;
-    @ConfigEntry public int furnaceRecipeBookY = 80;
+    @SerialEntry public boolean blastFurnaceInventory = true;
+    @SerialEntry public int blastFurnaceInventoryX = 73;
+    @SerialEntry public int blastFurnaceInventoryY = 80;
+    @SerialEntry public int blastFurnaceRecipeBookX = 150;
+    @SerialEntry public int blastFurnaceRecipeBookY = 80;
 
-    @ConfigEntry public boolean smokerInventory = true;
-    @ConfigEntry public int smokerInventoryX = 73;
-    @ConfigEntry public int smokerInventoryY = 80;
-    @ConfigEntry public int smokerRecipeBookX = 150;
-    @ConfigEntry public int smokerRecipeBookY = 80;
+    @SerialEntry public boolean anvilInventory = true;
+    @SerialEntry public int anvilInventoryX = 73;
+    @SerialEntry public int anvilInventoryY = 80;
 
-    @ConfigEntry public boolean blastFurnaceInventory = true;
-    @ConfigEntry public int blastFurnaceInventoryX = 73;
-    @ConfigEntry public int blastFurnaceInventoryY = 80;
-    @ConfigEntry public int blastFurnaceRecipeBookX = 150;
-    @ConfigEntry public int blastFurnaceRecipeBookY = 80;
+    @SerialEntry public boolean generic3x3Inventory = true;
+    @SerialEntry public int generic3x3InventoryX = 73;
+    @SerialEntry public int generic3x3InventoryY = 80;
 
-    @ConfigEntry public boolean anvilInventory = true;
-    @ConfigEntry public int anvilInventoryX = 73;
-    @ConfigEntry public int anvilInventoryY = 80;
+    @SerialEntry public boolean hopperInventory = true;
+    @SerialEntry public int hopperInventoryX = 73;
+    @SerialEntry public int hopperInventoryY = 64;
 
-    @ConfigEntry public boolean generic3x3Inventory = true;
-    @ConfigEntry public int generic3x3InventoryX = 73;
-    @ConfigEntry public int generic3x3InventoryY = 80;
+    @SerialEntry public boolean villagerInventory = true;
+    @SerialEntry public int villagerInventoryX = 123;
+    @SerialEntry public int villagerInventoryY = 80;
 
-    @ConfigEntry public boolean hopperInventory = true;
-    @ConfigEntry public int hopperInventoryX = 73;
-    @ConfigEntry public int hopperInventoryY = 64;
+    @SerialEntry public boolean horseInventory = true;
+    @SerialEntry public int horseInventoryX = 73;
+    @SerialEntry public int horseInventoryY = 80;
 
-    @ConfigEntry public boolean villagerInventory = true;
-    @ConfigEntry public int villagerInventoryX = 123;
-    @ConfigEntry public int villagerInventoryY = 80;
+    @SerialEntry public boolean enchantingInventory = true;
+    @SerialEntry public int enchantingInventoryX = 88;
+    @SerialEntry public int enchantingInventoryY = 78;
 
-    @ConfigEntry public boolean horseInventory = true;
-    @ConfigEntry public int horseInventoryX = 73;
-    @ConfigEntry public int horseInventoryY = 80;
+    @SerialEntry public boolean stonecutterInventory = true;
+    @SerialEntry public int stonecutterInventoryX = 73;
+    @SerialEntry public int stonecutterInventoryY = 80;
 
-    @ConfigEntry public boolean enchantingInventory = true;
-    @ConfigEntry public int enchantingInventoryX = 88;
-    @ConfigEntry public int enchantingInventoryY = 78;
+    @SerialEntry public boolean cartographyInventory = true;
+    @SerialEntry public int cartographyInventoryX = 73;
+    @SerialEntry public int cartographyInventoryY = 80;
 
-    @ConfigEntry public boolean stonecutterInventory = true;
-    @ConfigEntry public int stonecutterInventoryX = 73;
-    @ConfigEntry public int stonecutterInventoryY = 80;
+    @SerialEntry public boolean smithingInventory = true;
+    @SerialEntry public int smithingInventoryX = 73;
+    @SerialEntry public int smithingInventoryY = 80;
 
-    @ConfigEntry public boolean cartographyInventory = true;
-    @ConfigEntry public int cartographyInventoryX = 73;
-    @ConfigEntry public int cartographyInventoryY = 80;
+    @SerialEntry public boolean grindstoneInventory = true;
+    @SerialEntry public int grindstoneInventoryX = 73;
+    @SerialEntry public int grindstoneInventoryY = 80;
 
-    @ConfigEntry public boolean smithingInventory = true;
-    @ConfigEntry public int smithingInventoryX = 73;
-    @ConfigEntry public int smithingInventoryY = 80;
+    @SerialEntry public boolean loomInventory = true;
+    @SerialEntry public int loomInventoryX = 73;
+    @SerialEntry public int loomInventoryY = 80;
 
-    @ConfigEntry public boolean grindstoneInventory = true;
-    @ConfigEntry public int grindstoneInventoryX = 73;
-    @ConfigEntry public int grindstoneInventoryY = 80;
+    @SerialEntry public boolean brewingInventory = true;
+    @SerialEntry public int brewingInventoryX = 73;
+    @SerialEntry public int brewingInventoryY = 80;
 
-    @ConfigEntry public boolean loomInventory = true;
-    @ConfigEntry public int loomInventoryX = 73;
-    @ConfigEntry public int loomInventoryY = 80;
-
-    @ConfigEntry public boolean brewingInventory = true;
-    @ConfigEntry public int brewingInventoryX = 73;
-    @ConfigEntry public int brewingInventoryY = 80;
-
-    @ConfigEntry public boolean beaconInventory = false;
-    @ConfigEntry public int beaconInventoryX = 115;
-    @ConfigEntry public int beaconInventoryY = 105;
+    @SerialEntry public boolean beaconInventory = false;
+    @SerialEntry public int beaconInventoryX = 115;
+    @SerialEntry public int beaconInventoryY = 105;
 
 
     public static Screen makeScreen(Screen parent) {
-        return YetAnotherConfigLib.create(INSTANCE, (defaults, config, builder) -> builder
+        return YetAnotherConfigLib.create(HANDLER, (defaults, config, builder) -> builder
                         .title(Text.translatable("config.title"))
                         .category(ConfigCategory.createBuilder()
                                 .name(Text.translatable("config.title"))
@@ -135,7 +148,7 @@ public class SimpleCloseButtonConfig {
                                         .controller(TickBoxControllerBuilder::create).build())
 
 
-                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.creativeInventory.name"))
+                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.creativeInventory.name")).collapsed(true)
                                         .description(OptionDescription.of(Text.translatable("config.group.creativeInventory.desc")))
 
                                         .option(Option.<Boolean>createBuilder()
@@ -155,7 +168,7 @@ public class SimpleCloseButtonConfig {
                                                 .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(-258, 270).step(1)).build()).build())
 
 
-                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.survivalInventory.name"))
+                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.survivalInventory.name")).collapsed(true)
                                         .description(OptionDescription.of(Text.translatable("config.group.survivalInventory.desc")))
 
                                         .option(Option.<Boolean>createBuilder()
@@ -185,47 +198,54 @@ public class SimpleCloseButtonConfig {
                                                 .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(-258, 270).step(1)).build()).build())
 
 
-                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.smallChestInventory.name"))
-                                        .description(OptionDescription.of(Text.translatable("config.group.smallChestInventory.desc")))
+                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.chestInventory.name")).collapsed(true)
+                                        .description(OptionDescription.of(Text.translatable("config.group.chestInventory.desc")))
 
                                         .option(Option.<Boolean>createBuilder()
-                                                .name(Text.translatable("config.group.smallChestInventory.option.toggle.name"))
-                                                .description(OptionDescription.of(Text.translatable("config.group.smallChestInventory.option.toggle.desc")))
-                                                .binding(defaults.singleChestInventory, () -> config.singleChestInventory, value -> config.singleChestInventory = value)
+                                                .name(Text.translatable("config.group.chestInventory.option.toggle.name"))
+                                                .description(OptionDescription.of(Text.translatable("config.group.chestInventory.option.toggle.desc")))
+                                                .binding(defaults.chestInventory, () -> config.chestInventory, value -> config.chestInventory = value)
                                                 .controller(TickBoxControllerBuilder::create).build())
+                                        
                                         .option(Option.<Integer>createBuilder()
-                                                .name(Text.translatable("config.group.smallChestInventory.option.posX.name"))
-                                                .description(OptionDescription.of(Text.translatable("config.group.smallChestInventory.option.posX.desc")))
-                                                .binding(defaults.singleChestInventoryX, () -> config.singleChestInventoryX, value -> config.singleChestInventoryX = value)
+                                                .name(Text.translatable("config.group.chestInventory.option.posX.name"))
+                                                .description(OptionDescription.of(Text.translatable("config.group.chestInventory.option.posX.desc")))
+                                                .binding(defaults.chestInventoryX, () -> config.chestInventoryX, value -> config.chestInventoryX = value)
                                                 .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(-480, 468).step(1)).build())
+                                        
                                         .option(Option.<Integer>createBuilder()
-                                                .name(Text.translatable("config.group.smallChestInventory.option.posY.name"))
-                                                .description(OptionDescription.of(Text.translatable("config.group.smallChestInventory.option.posY.desc")))
-                                                .binding(defaults.singleChestInventoryY, () -> config.singleChestInventoryY, value -> config.singleChestInventoryY = value)
+                                                .name(Text.translatable("config.group.chestInventory.option.posY1.name"))
+                                                .description(OptionDescription.of(Text.translatable("config.group.chestInventory.option.posY1.desc")))
+                                                .binding(defaults.chestInventoryY1, () -> config.chestInventoryY1, value -> config.chestInventoryY1 = value)
+                                                .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(-258, 270).step(1)).build())
+                                        .option(Option.<Integer>createBuilder()
+                                                .name(Text.translatable("config.group.chestInventory.option.posY2.name"))
+                                                .description(OptionDescription.of(Text.translatable("config.group.chestInventory.option.posY2.desc")))
+                                                .binding(defaults.chestInventoryY2, () -> config.chestInventoryY2, value -> config.chestInventoryY2 = value)
+                                                .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(-258, 270).step(1)).build())
+                                        .option(Option.<Integer>createBuilder()
+                                                .name(Text.translatable("config.group.chestInventory.option.posY3.name"))
+                                                .description(OptionDescription.of(Text.translatable("config.group.chestInventory.option.posY3.desc")))
+                                                .binding(defaults.chestInventoryY3, () -> config.chestInventoryY3, value -> config.chestInventoryY3 = value)
+                                                .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(-258, 270).step(1)).build())
+                                        .option(Option.<Integer>createBuilder()
+                                                .name(Text.translatable("config.group.chestInventory.option.posY4.name"))
+                                                .description(OptionDescription.of(Text.translatable("config.group.chestInventory.option.posY4.desc")))
+                                                .binding(defaults.chestInventoryY4, () -> config.chestInventoryY4, value -> config.chestInventoryY4 = value)
+                                                .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(-258, 270).step(1)).build())
+                                        .option(Option.<Integer>createBuilder()
+                                                .name(Text.translatable("config.group.chestInventory.option.posY5.name"))
+                                                .description(OptionDescription.of(Text.translatable("config.group.chestInventory.option.posY5.desc")))
+                                                .binding(defaults.chestInventoryY5, () -> config.chestInventoryY5, value -> config.chestInventoryY5 = value)
+                                                .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(-258, 270).step(1)).build())
+                                        .option(Option.<Integer>createBuilder()
+                                                .name(Text.translatable("config.group.chestInventory.option.posY6.name"))
+                                                .description(OptionDescription.of(Text.translatable("config.group.chestInventory.option.posY6.desc")))
+                                                .binding(defaults.chestInventoryY6, () -> config.chestInventoryY6, value -> config.chestInventoryY6 = value)
                                                 .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(-258, 270).step(1)).build()).build())
-
-
-                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.largeChestInventory.name"))
-                                        .description(OptionDescription.of(Text.translatable("config.group.largeChestInventory.desc")))
-
-                                        .option(Option.<Boolean>createBuilder()
-                                                .name(Text.translatable("config.group.largeChestInventory.option.toggle.name"))
-                                                .description(OptionDescription.of(Text.translatable("config.group.largeChestInventory.option.toggle.desc")))
-                                                .binding(defaults.doubleChestInventory, () -> config.doubleChestInventory, value -> config.doubleChestInventory = value)
-                                                .controller(TickBoxControllerBuilder::create).build())
-                                        .option(Option.<Integer>createBuilder()
-                                                .name(Text.translatable("config.group.largeChestInventory.option.posX.name"))
-                                                .description(OptionDescription.of(Text.translatable("config.group.largeChestInventory.option.posX.desc")))
-                                                .binding(defaults.doubleChestInventoryX, () -> config.doubleChestInventoryX, value -> config.doubleChestInventoryX = value)
-                                                .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(-480, 468).step(1)).build())
-                                        .option(Option.<Integer>createBuilder()
-                                                .name(Text.translatable("config.group.largeChestInventory.option.posY.name"))
-                                                .description(OptionDescription.of(Text.translatable("config.group.largeChestInventory.option.posY.desc")))
-                                                .binding(defaults.doubleChestInventoryY, () -> config.doubleChestInventoryY, value -> config.doubleChestInventoryY = value)
-                                                .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(-258, 270).step(1)).build()).build())
-
-
-                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.craftingInventory.name"))
+                                
+                                
+                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.craftingInventory.name")).collapsed(true)
                                         .description(OptionDescription.of(Text.translatable("config.group.craftingInventory.desc")))
 
                                         .option(Option.<Boolean>createBuilder()
@@ -253,9 +273,29 @@ public class SimpleCloseButtonConfig {
                                                 .description(OptionDescription.of(Text.translatable("config.group.craftingInventory.option.bookPosX.desc")))
                                                 .binding(defaults.craftingTableRecipeBookY, () -> config.craftingTableRecipeBookY, value -> config.craftingTableRecipeBookY = value)
                                                 .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(-258, 270).step(1)).build()).build())
+                                
+                                
+                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.crafterInventory.name")).collapsed(true)
+                                        .description(OptionDescription.of(Text.translatable("config.group.crafterInventory.desc")))
+
+                                        .option(Option.<Boolean>createBuilder()
+                                                .name(Text.translatable("config.group.crafterInventory.option.toggle.name"))
+                                                .description(OptionDescription.of(Text.translatable("config.group.crafterInventory.option.toggle.desc")))
+                                                .binding(defaults.crafterInventory, () -> config.crafterInventory, value -> config.crafterInventory = value)
+                                                .controller(TickBoxControllerBuilder::create).build())
+                                        .option(Option.<Integer>createBuilder()
+                                                .name(Text.translatable("config.group.crafterInventory.option.posX.name"))
+                                                .description(OptionDescription.of(Text.translatable("config.group.crafterInventory.option.posX.desc")))
+                                                .binding(defaults.crafterInventoryX, () -> config.crafterInventoryX, value -> config.crafterInventoryX = value)
+                                                .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(-480, 468).step(1)).build())
+                                        .option(Option.<Integer>createBuilder()
+                                                .name(Text.translatable("config.group.crafterInventory.option.posY.name"))
+                                                .description(OptionDescription.of(Text.translatable("config.group.crafterInventory.option.posY.desc")))
+                                                .binding(defaults.crafterInventoryY, () -> config.crafterInventoryY, value -> config.crafterInventoryY = value)
+                                                .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(-258, 270).step(1)).build()).build())
 
 
-                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.shulkerInventory.name"))
+                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.shulkerInventory.name")).collapsed(true)
                                         .description(OptionDescription.of(Text.translatable("config.group.shulkerInventory.desc")))
 
                                         .option(Option.<Boolean>createBuilder()
@@ -275,7 +315,7 @@ public class SimpleCloseButtonConfig {
                                                 .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(-258, 270).step(1)).build()).build())
 
 
-                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.furnaceInventory.name"))
+                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.furnaceInventory.name")).collapsed(true)
                                         .description(OptionDescription.of(Text.translatable("config.group.furnaceInventory.desc")))
 
                                         .option(Option.<Boolean>createBuilder()
@@ -305,7 +345,7 @@ public class SimpleCloseButtonConfig {
                                                 .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(-258, 270).step(1)).build()).build())
 
 
-                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.smokerInventory.name"))
+                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.smokerInventory.name")).collapsed(true)
                                         .description(OptionDescription.of(Text.translatable("config.group.smokerInventory.desc")))
 
                                         .option(Option.<Boolean>createBuilder()
@@ -335,7 +375,7 @@ public class SimpleCloseButtonConfig {
                                                 .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(-258, 270).step(1)).build()).build())
 
 
-                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.blastFurnaceInventory.name"))
+                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.blastFurnaceInventory.name")).collapsed(true)
                                         .description(OptionDescription.of(Text.translatable("config.group.blastFurnaceInventory.desc")))
 
                                         .option(Option.<Boolean>createBuilder()
@@ -365,7 +405,7 @@ public class SimpleCloseButtonConfig {
                                                 .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(-258, 270).step(1)).build()).build())
 
 
-                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.anvilInventory.name"))
+                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.anvilInventory.name")).collapsed(true)
                                         .description(OptionDescription.of(Text.translatable("config.group.anvilInventory.desc")))
 
                                         .option(Option.<Boolean>createBuilder()
@@ -385,7 +425,7 @@ public class SimpleCloseButtonConfig {
                                                 .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(-258, 270).step(1)).build()).build())
 
 
-                                .group(OptionGroup.createBuilder().name(Text.literal("3x3 Inventory"))
+                                .group(OptionGroup.createBuilder().name(Text.literal("3x3 Inventory")).collapsed(true)
                                         .description(OptionDescription.of(Text.literal("3x3 inventories are ones such as droppers and dispensers. I don't know how to separate them so you'll have to deal with them sharing settings.")))
 
                                         .option(Option.<Boolean>createBuilder()
@@ -405,7 +445,7 @@ public class SimpleCloseButtonConfig {
                                                 .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(-258, 270).step(1)).build()).build())
 
 
-                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.hopperInventory.name"))
+                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.hopperInventory.name")).collapsed(true)
                                         .description(OptionDescription.of(Text.translatable("config.group.hopperInventory.desc")))
 
                                         .option(Option.<Boolean>createBuilder()
@@ -425,7 +465,7 @@ public class SimpleCloseButtonConfig {
                                                 .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(-258, 270).step(1)).build()).build())
 
 
-                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.villagerInventory.name"))
+                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.villagerInventory.name")).collapsed(true)
                                         .description(OptionDescription.of(Text.translatable("config.group.villagerInventory.desc")))
 
                                         .option(Option.<Boolean>createBuilder()
@@ -445,7 +485,7 @@ public class SimpleCloseButtonConfig {
                                                 .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(-258, 270).step(1)).build()).build())
 
 
-                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.mountInventory.name"))
+                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.mountInventory.name")).collapsed(true)
                                         .description(OptionDescription.of(Text.translatable("config.group.mountInventory.desc")))
 
                                         .option(Option.<Boolean>createBuilder()
@@ -465,7 +505,7 @@ public class SimpleCloseButtonConfig {
                                                 .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(-258, 270).step(1)).build()).build())
 
 
-                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.enchantInventory.name"))
+                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.enchantInventory.name")).collapsed(true)
                                         .description(OptionDescription.of(Text.translatable("config.group.enchantInventory.desc")))
 
                                         .option(Option.<Boolean>createBuilder()
@@ -485,7 +525,7 @@ public class SimpleCloseButtonConfig {
                                                 .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(-258, 270).step(1)).build()).build())
 
 
-                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.stonecutterInventory.name"))
+                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.stonecutterInventory.name")).collapsed(true)
                                         .description(OptionDescription.of(Text.translatable("config.group.stonecutterInventory.desc")))
 
                                         .option(Option.<Boolean>createBuilder()
@@ -505,7 +545,7 @@ public class SimpleCloseButtonConfig {
                                                 .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(-258, 270).step(1)).build()).build())
 
 
-                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.cartographyInventory.name"))
+                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.cartographyInventory.name")).collapsed(true)
                                         .description(OptionDescription.of(Text.translatable("config.group.cartographyInventory.desc")))
 
                                         .option(Option.<Boolean>createBuilder()
@@ -525,7 +565,7 @@ public class SimpleCloseButtonConfig {
                                                 .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(-258, 270).step(1)).build()).build())
 
 
-                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.smithingInventory.name"))
+                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.smithingInventory.name")).collapsed(true)
                                         .description(OptionDescription.of(Text.translatable("config.group.smithingInventory.desc")))
 
                                         .option(Option.<Boolean>createBuilder()
@@ -545,7 +585,7 @@ public class SimpleCloseButtonConfig {
                                                 .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(-258, 270).step(1)).build()).build())
 
 
-                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.grindstoneInventory.name"))
+                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.grindstoneInventory.name")).collapsed(true)
                                         .description(OptionDescription.of(Text.translatable("config.group.grindstoneInventory.desc")))
 
                                         .option(Option.<Boolean>createBuilder()
@@ -565,7 +605,7 @@ public class SimpleCloseButtonConfig {
                                                 .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(-258, 270).step(1)).build()).build())
 
 
-                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.loomInventory.name"))
+                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.loomInventory.name")).collapsed(true)
                                         .description(OptionDescription.of(Text.translatable("config.group.loomInventory.desc")))
 
                                         .option(Option.<Boolean>createBuilder()
@@ -585,7 +625,7 @@ public class SimpleCloseButtonConfig {
                                                 .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(-258, 270).step(1)).build()).build())
 
 
-                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.brewingInventory.name"))
+                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.brewingInventory.name")).collapsed(true)
                                         .description(OptionDescription.of(Text.translatable("config.group.brewingInventory.desc")))
 
                                         .option(Option.<Boolean>createBuilder()
@@ -605,7 +645,7 @@ public class SimpleCloseButtonConfig {
                                                 .controller(opt -> IntegerSliderControllerBuilder.create(opt).range(-258, 270).step(1)).build()).build())
 
 
-                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.beaconInventory.name"))
+                                .group(OptionGroup.createBuilder().name(Text.translatable("config.group.beaconInventory.name")).collapsed(true)
                                         .description(OptionDescription.of(Text.translatable("config.group.beaconInventory.desc")))
 
                                         .option(Option.<Boolean>createBuilder()
