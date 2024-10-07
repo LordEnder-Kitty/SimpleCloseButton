@@ -1,6 +1,5 @@
 package net.enderkitty;
 
-import net.enderkitty.config.SimpleCloseButtonConfig;
 import net.fabricmc.api.ModInitializer;
 
 public class SimpleCloseButton implements ModInitializer {
@@ -8,6 +7,5 @@ public class SimpleCloseButton implements ModInitializer {
 	
 	@Override
 	public void onInitialize() {
-		SimpleCloseButtonConfig.HANDLER.load();
 	}
 }
