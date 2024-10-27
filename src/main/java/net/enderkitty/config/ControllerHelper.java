@@ -26,7 +26,7 @@ public abstract class ControllerHelper<T> implements Controller<T> {
         return Text.empty();
     }
 
-
+    @SuppressWarnings("deprecation")
     public static <T> Option<T> createOption(String name, Function<Option<T>, ControllerBuilder<T>> controllerBuilder, Supplier<T> get, Consumer<T> set, Text desc) {
         return Option.<T>createBuilder()
                 .name(Text.literal(name))

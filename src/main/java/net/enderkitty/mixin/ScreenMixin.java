@@ -7,13 +7,12 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.AbstractParentElement;
-import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.Drawable;
 import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.screen.ButtonTextures;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ingame.GenericContainerScreen;
-import net.minecraft.client.gui.screen.recipebook.RecipeBookProvider;
+import net.minecraft.client.gui.screen.ingame.RecipeBookScreen;
 import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
@@ -48,22 +47,22 @@ public abstract class ScreenMixin extends AbstractParentElement implements Drawa
     
     @Inject(method = "init(Lnet/minecraft/client/MinecraftClient;II)V", at = @At("TAIL"))
     public final void initCloseButtons(MinecraftClient client, int width, int height, CallbackInfo ci) {
-        if (config.modEnabled && client.currentScreen instanceof GenericContainerScreen && config.chestInventory && MinecraftClient.getInstance().player != null) {
-            GenericContainerScreenHandler handler = (GenericContainerScreenHandler) MinecraftClient.getInstance().player.currentScreenHandler;
-            switch (handler.getRows()) {
-                case 1 -> closeButtonWidget(config.chestInventoryX, config.chestInventoryY1);
-                case 2 -> closeButtonWidget(config.chestInventoryX, config.chestInventoryY2);
-                case 3 -> closeButtonWidget(config.chestInventoryX, config.chestInventoryY3);
-                case 4 -> closeButtonWidget(config.chestInventoryX, config.chestInventoryY4);
-                case 5 -> closeButtonWidget(config.chestInventoryX, config.chestInventoryY5);
-                case 6 -> closeButtonWidget(config.chestInventoryX, config.chestInventoryY6);
-            }
-        }
-        
         if (config.modEnabled) {
+            if (client.currentScreen instanceof GenericContainerScreen && config.chestInventory && MinecraftClient.getInstance().player != null) {
+                GenericContainerScreenHandler handler = (GenericContainerScreenHandler) MinecraftClient.getInstance().player.currentScreenHandler;
+                switch (handler.getRows()) {
+                    case 1 -> closeButtonWidget(config.chestInventoryX, config.chestInventoryY1);
+                    case 2 -> closeButtonWidget(config.chestInventoryX, config.chestInventoryY2);
+                    case 3 -> closeButtonWidget(config.chestInventoryX, config.chestInventoryY3);
+                    case 4 -> closeButtonWidget(config.chestInventoryX, config.chestInventoryY4);
+                    case 5 -> closeButtonWidget(config.chestInventoryX, config.chestInventoryY5);
+                    case 6 -> closeButtonWidget(config.chestInventoryX, config.chestInventoryY6);
+                }
+            }
+            
             for (ScreenEntry screenEntry : config.screens) {
                 if (client.currentScreen != null && client.currentScreen.getClass().getCanonicalName().equals(screenEntry.screen())) {
-                    if (screenEntry.recipeBook() && client.currentScreen instanceof RecipeBookProvider screenWithBook && screenWithBook.getRecipeBookWidget().isOpen()) {
+                    if (screenEntry.recipeBook() && client.currentScreen instanceof RecipeBookScreen<?> screenWithBook && ((RecipeBookAccessor) screenWithBook).getRecipeBook().isOpen()) {
                         closeButtonWidget(screenEntry.bookX(), screenEntry.bookY());
                     } else {
                         closeButtonWidget(screenEntry.x(), screenEntry.y());
@@ -78,8 +77,8 @@ public abstract class ScreenMixin extends AbstractParentElement implements Drawa
         if (config.modEnabled) {
             for (ScreenEntry screenEntry : config.screens) {
                 if (client != null && client.currentScreen != null && client.currentScreen.getClass().getCanonicalName().equals(screenEntry.screen()) 
-                        && screenEntry.recipeBook() && client.currentScreen instanceof RecipeBookProvider screenWithBook) {
-                    if (screenWithBook.getRecipeBookWidget().isOpen()) {
+                        && screenEntry.recipeBook() && client.currentScreen instanceof RecipeBookScreen<?> screenWithBook) {
+                    if (((RecipeBookAccessor) screenWithBook).getRecipeBook().isOpen()) {
                         closeButton.setPosition(this.width / 2 + screenEntry.bookX(), this.height / 2 - screenEntry.bookY());
                     } else {
                         closeButton.setPosition(this.width / 2 + screenEntry.x(), this.height / 2 - screenEntry.y());
