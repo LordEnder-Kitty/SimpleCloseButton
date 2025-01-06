@@ -3,6 +3,7 @@ package net.enderkitty.config;
 import dev.isxander.yacl3.api.Controller;
 import dev.isxander.yacl3.api.Option;
 import dev.isxander.yacl3.api.OptionDescription;
+import dev.isxander.yacl3.api.StateManager;
 import dev.isxander.yacl3.api.controller.ControllerBuilder;
 import net.minecraft.text.Text;
 
@@ -25,14 +26,12 @@ public abstract class ControllerHelper<T> implements Controller<T> {
     public Text formatValue() {
         return Text.empty();
     }
-
-
+    
     public static <T> Option<T> createOption(String name, Function<Option<T>, ControllerBuilder<T>> controllerBuilder, Supplier<T> get, Consumer<T> set, Text desc) {
         return Option.<T>createBuilder()
                 .name(Text.literal(name))
-                .binding(get.get(), get, set)
                 .description(OptionDescription.of(desc))
-                .instant(true)
+                .stateManager(StateManager.createInstant(get.get(), get, set))
                 .controller(controllerBuilder)
                 .build();
     }

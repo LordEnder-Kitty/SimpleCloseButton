@@ -7,7 +7,6 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.AbstractParentElement;
-import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.Drawable;
 import net.minecraft.client.gui.Element;
 import net.minecraft.client.gui.screen.ButtonTextures;
@@ -35,7 +34,9 @@ public abstract class ScreenMixin extends AbstractParentElement implements Drawa
             Identifier.of(SimpleCloseButton.MOD_ID, "widget/close_button"), 
             Identifier.of(SimpleCloseButton.MOD_ID, "widget/close_button_highlighted")
     );
-    @Unique ButtonWidget closeButton = new TexturedButtonWidget(this.width / 2 + 73, this.height / 2 + 80, 12, 12, TEXTURES, button -> this.close());
+    @Unique ButtonWidget closeButton = new TexturedButtonWidget(this.width / 2 + 73, this.height / 2 + 80, 12, 12, TEXTURES, button -> {
+        if (Screen.hasShiftDown()) MinecraftClient.getInstance().setScreen(null); else this.close();
+    });
     @Unique SimpleCloseButtonConfig config = SimpleCloseButtonConfig.HANDLER.instance();
     
     
@@ -62,7 +63,8 @@ public abstract class ScreenMixin extends AbstractParentElement implements Drawa
         
         if (config.modEnabled) {
             for (ScreenEntry screenEntry : config.screens) {
-                if (client.currentScreen != null && client.currentScreen.getClass().getCanonicalName().equals(screenEntry.screen())) {
+                if (client.currentScreen != null && client.currentScreen.getClass().getCanonicalName() != null
+                        && client.currentScreen.getClass().getCanonicalName().equals(screenEntry.screen())) {
                     if (screenEntry.recipeBook() && client.currentScreen instanceof RecipeBookProvider screenWithBook && screenWithBook.getRecipeBookWidget().isOpen()) {
                         closeButtonWidget(screenEntry.bookX(), screenEntry.bookY());
                     } else {
@@ -77,7 +79,8 @@ public abstract class ScreenMixin extends AbstractParentElement implements Drawa
     public void tick(CallbackInfo ci) {
         if (config.modEnabled) {
             for (ScreenEntry screenEntry : config.screens) {
-                if (client != null && client.currentScreen != null && client.currentScreen.getClass().getCanonicalName().equals(screenEntry.screen()) 
+                if (client != null && client.currentScreen != null && client.currentScreen.getClass().getCanonicalName() != null
+                        && client.currentScreen.getClass().getCanonicalName().equals(screenEntry.screen())
                         && screenEntry.recipeBook() && client.currentScreen instanceof RecipeBookProvider screenWithBook) {
                     if (screenWithBook.getRecipeBookWidget().isOpen()) {
                         closeButton.setPosition(this.width / 2 + screenEntry.bookX(), this.height / 2 - screenEntry.bookY());
@@ -93,7 +96,7 @@ public abstract class ScreenMixin extends AbstractParentElement implements Drawa
     public void closeButtonWidget(int x, int y) {
         if (client != null && client.currentScreen != null) {
             closeButton.setPosition(this.width / 2 + x, this.height / 2 - y);
-            if (config.tooltip) closeButton.setTooltip(Tooltip.of(Text.translatable("close-btn.button.tooltip")));
+            if (config.tooltip) closeButton.setTooltip(Tooltip.of(Text.translatable("simple-close-button.button.tooltip")));
             addDrawableChild(closeButton);
         }
     }

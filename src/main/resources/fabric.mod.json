@@ -1,12 +1,12 @@
 {
 	"schemaVersion": 1,
-	"id": "close-btn",
+	"id": "simple-close-button",
 	"version": "${version}",
 	"name": "Simple Close Button",
 	"description": "Adds a close button to any screen you'd like.",
 	"authors": ["LordEnder_Kitty"],
 	"license": "MIT",
-	"icon": "assets/close-btn/icon.png",
+	"icon": "assets/simple-close-button/icon.png",
 	"environment": "client",
 	"entrypoints": {
 		"main": ["net.enderkitty.SimpleCloseButton"],
@@ -15,7 +15,7 @@
 	"mixins": ["close-btn.mixins.json"],
 	"depends": {
 		"fabricloader": "*",
-		"minecraft": ">=1.21",
+		"minecraft": ["1.21", "1.21.1"],
 		"java": ">=21",
 		"fabric-api": "*",
 		"yet_another_config_lib_v3": ">=3.5.0+1.21-fabric"
