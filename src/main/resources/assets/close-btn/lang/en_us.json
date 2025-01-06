@@ -25,15 +25,15 @@
   "config.group.chestInventory.option.posX.name": "X Position",
   "config.group.chestInventory.option.posX.desc": "Position of the close button on the horizontal axis.",
   "config.group.chestInventory.option.posY1.name": "Y Position For 1 Row Chests",
-  "config.group.chestInventory.option.posY1.desc": "Position of the close button on the vertical axis when 'GenericContainerScreen's have 1 row.",
+  "config.group.chestInventory.option.posY1.desc": "Position of the close button on the vertical axis when 'GenericContainerScreen' has 1 row.",
   "config.group.chestInventory.option.posY2.name": "Y Position For 2 Row Chests",
-  "config.group.chestInventory.option.posY2.desc": "Position of the close button on the vertical axis when 'GenericContainerScreen's have 2 rows.",
+  "config.group.chestInventory.option.posY2.desc": "Position of the close button on the vertical axis when 'GenericContainerScreen' has 2 rows.",
   "config.group.chestInventory.option.posY3.name": "Y Position For 3 Row Chests",
-  "config.group.chestInventory.option.posY3.desc": "Position of the close button on the vertical axis when 'GenericContainerScreen's have 3 rows.",
+  "config.group.chestInventory.option.posY3.desc": "Position of the close button on the vertical axis when 'GenericContainerScreen' has 3 rows.",
   "config.group.chestInventory.option.posY4.name": "Y Position For 4 Row Chests",
-  "config.group.chestInventory.option.posY4.desc": "Position of the close button on the vertical axis when 'GenericContainerScreen's have 4 rows.",
+  "config.group.chestInventory.option.posY4.desc": "Position of the close button on the vertical axis when 'GenericContainerScreen' has 4 rows.",
   "config.group.chestInventory.option.posY5.name": "Y Position For 5 Row Chests",
-  "config.group.chestInventory.option.posY5.desc": "Position of the close button on the vertical axis when 'GenericContainerScreen's have 5 rows.",
+  "config.group.chestInventory.option.posY5.desc": "Position of the close button on the vertical axis when 'GenericContainerScreen' has 5 rows.",
   "config.group.chestInventory.option.posY6.name": "Y Position For 6 Row Chests",
-  "config.group.chestInventory.option.posY6.desc": "Position of the close button on the vertical axis when 'GenericContainerScreen's have 6 rows."
+  "config.group.chestInventory.option.posY6.desc": "Position of the close button on the vertical axis when 'GenericContainerScreen' has 6 rows."
 }
