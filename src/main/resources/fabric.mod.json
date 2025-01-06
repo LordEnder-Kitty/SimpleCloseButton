@@ -12,7 +12,9 @@
 		"main": ["net.enderkitty.SimpleCloseButton"],
 		"modmenu": ["net.enderkitty.ModMenuImpl"]
 	},
-	"mixins": ["close-btn.mixins.json"],
+	"mixins": [
+		"simple-close-button.mixins.json"
+	],
 	"depends": {
 		"fabricloader": "*",
 		"minecraft": ">=1.21.2",
