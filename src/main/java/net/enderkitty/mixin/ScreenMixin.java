@@ -96,7 +96,7 @@ public abstract class ScreenMixin extends AbstractParentElement implements Drawa
     public void closeButtonWidget(int x, int y) {
         if (client != null && client.currentScreen != null) {
             closeButton.setPosition(this.width / 2 + x, this.height / 2 - y);
-            if (config.tooltip) closeButton.setTooltip(Tooltip.of(Text.translatable("close-btn.button.tooltip")));
+            if (config.tooltip) closeButton.setTooltip(Tooltip.of(Text.translatable("simple-close-button.button.tooltip")));
             addDrawableChild(closeButton);
         }
     }

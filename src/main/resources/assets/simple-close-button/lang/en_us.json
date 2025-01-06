@@ -1,5 +1,5 @@
 {
-  "close-btn.button.tooltip": "Close",
+  "simple-close-button.button.tooltip": "Close",
   
   "config.title": "Simple Close Button Config",
   "config.category.screens": "Screens",
